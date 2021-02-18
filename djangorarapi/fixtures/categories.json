@@ -1,0 +1,30 @@
+[
+    {
+        "model": "djangorarapi.category",
+        "pk": 1,
+        "fields": {
+            "label": "Green Energy"
+        }
+    },
+    {
+        "model": "djangorarapi.category",
+        "pk": 1,
+        "fields": {
+            "label": "Home Defense"
+        }
+    },
+    {
+        "model": "djangorarapi.category",
+        "pk": 1,
+        "fields": {
+            "label": "Healthcare"
+        }
+    },
+    {
+        "model": "djangorarapi.category",
+        "pk": 1,
+        "fields": {
+            "label": "Business"
+        }
+    }
+]
