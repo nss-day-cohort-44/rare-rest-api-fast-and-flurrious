@@ -1,0 +1,54 @@
+[
+    {
+        "model": "djangorarapi.post",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "category": 1,
+            "title": "Ford CEO Launches Electric Vehicle Push By Having Buddy Stand Watch While He Steals Battery From Parked Prius",
+            "publication_date": "2020-10-28T14:51:39.989Z",
+            "profile_image_url": "https://i.kinja-img.com/gawker-media/image/upload/c_fit,f_auto,g_center,pg_1,q_60,w_740/g2drwmavpr7oooz9ac0l.jpg",
+            "content": "DEARBORN, MI—Saying the time was now to take decisive action on climate change, Ford CEO Jim Farley launched the company’s electric vehicle push Monday by having his buddy stand watch while he stole a battery from a parked Toyota Prius. “Bold plans like this will help ensure that Ford stays at the forefront of climate innovation and delivers on its goal of an electrified fleet by 2035—hey, Rickie, are you keeping an eye out for the cops? Don’t let me catch you playing that electric poker bullshit again,” said the automotive CEO, tinkering under the hood of the 2017 Prius before muttering under his breath that “this goddamn thing is scalding hot” after his knuckle glanced the radiator. “The science is clear: The future of the industry is in renewables. In fact, this battery alone can carry a passenger for up to 100 miles on one charge and goes for about five grand on Craigslist. All right, I seriously just heard sirens. Go! Fucking go!” At press time, Ford had walked back its climate plans indefinitely after the Prius’s owner appeared out of a nearby apartment building with a baseball bat, sending Farley and his friend scattering down the block.",
+            "approved": true
+        }
+    },
+    {
+        "model": "djangorarapi.post",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "category": 2,
+            "title": "‘You Go Back Where You Came From,’ Says Texan Pointing Gun At Snowman Trespassing On Property",
+            "publication_date": "2020-11-28T14:51:39.989Z",
+            "profile_image_url": "https://i.kinja-img.com/gawker-media/image/upload/c_fit,f_auto,g_center,pg_1,q_60,w_740/yyavidogszz0ur41yhes.jpg",
+            "content": "HALLSVILLE, TX—As he aimed his Winchester rifle at the stack of three large snowballs in his front yard, Texas man Bob Brookson was overheard notifying a snowman Tuesday that it was trespassing on private property and needed to go back to wherever it had come from. “Now, listen here, boy, I don’t want no trouble, so you best go on and git before I put a .38-caliber hole in that big smiley head of yours,” said Brookson, cocking the gun while he explained to the frozen figure that its kind was not welcome around there and that he would be well within his rights should he choose to neutralize the threat to his home. “You come one step closer, and you’re done for, you hear me? Huh? Say, you dumb or sum’n, boy? I don’t appreciate you starin’ at me, neither, you stonyeyed sonofabitch.” After it failed to respond to several warning shots, Brookson reportedly noticed the snowman was wearing his 7-year-old daughter’s scarf and immediately fired multiple rounds into the head and chest of the “thievin’ coward.”",
+            "approved": false
+        }
+    },
+    {
+        "model": "djangorarapi.post",
+        "pk": 3,
+        "fields": {
+            "user": 1,
+            "category": 3,
+            "title": "Vaccination Drive Finally Returns Nursing Home To Normal Levels Of Depressing",
+            "publication_date": "2020-09-28T16:51:39.989Z",
+            "profile_image_url": "https://i.kinja-img.com/gawker-media/image/upload/c_fit,f_auto,g_center,pg_1,q_60,w_740/r22ocdpiywoi7nfgpffr.jpg",
+            "content": "GILBERT, AZ—Residents and employees were reportedly celebrating Wednesday after the completion of a coronavirus vaccination drive finally returned a local nursing home to regular levels of depressing. “It’s just a relief to get everyone vaccinated so we can go back to the incredibly bleak day to day of our joyless pre-Covid existence,” said Lake Pleasant Nursing Home administrator Caroline Bellis, adding that the tired and fearful residents were assembling that evening for an interminable group game night. “We’re just delighted that residents won’t have to be cooped up in their rooms anymore because of coronavirus and will be back to being cooped up because our chronically understaffed and underpaid employees are spread too thin to attend to everyone’s basic needs. Residents can finally shuffle outside to meet with friends anywhere in our dirty, crumbling facility to watch each other waste away. And every one of our vaccinated residents can start visiting with their families, if their families still bother to visit them. It’s just great to see that dull, glazed look in their eyes again.” At press time, the staff were celebrating the restoring of normalcy after seeing a resident die from something besides coronavirus again.",
+            "approved": true
+        }
+    },
+    {
+        "model": "djangorarapi.post",
+        "pk": 4,
+        "fields": {
+            "user": 2,
+            "category": 4,
+            "title": "Employees On Zoom Call Watch In Horror As 2 Coworkers Who Began Talking At The Same Time Just Keep Powering Through",
+            "publication_date": "2020-12-28T16:51:39.989Z",
+            "profile_image_url": "https://i.kinja-img.com/gawker-media/image/upload/c_fit,f_auto,g_center,pg_1,q_60,w_740/qr9irrfem4sv5sfmynls.jpg",
+            "content": "BOSTON, MA—Eyes darting across the chat window as they strained to divide their attention between the speakers, Certech Consulting employees reportedly watched in horror during a Monday morning video meeting as two coworkers who began talking at the same time just kept powering through. “Oh God, it’s been too long for one of them to give up—these lunatics are really going full steam ahead until they’ve said their piece,” said junior analyst Olivia Thompson, her eyes widening in stunned disbelief as her fellow employees played a high-stake game of chicken in front of rest of the video chatroom. “It’s not even clear what Teddy is saying, but he definitely knows someone else is talking. And the crazy thing is neither of them even seem to care. Jesus Christ, what are we supposed to do? How long can this madness go on?” At press time, the rest of the staff was white-knuckling it through the meeting after a third employee loudly chimed in to add his thoughts despite the others showing no signs of slowing down.",
+            "approved": true
+        }
+    },
+]
