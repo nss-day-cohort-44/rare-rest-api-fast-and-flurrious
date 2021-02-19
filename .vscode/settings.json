@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "/home/heath/.local/share/virtualenvs/rare-rest-api-fast-and-flurrious-YzZj8sWT/bin/python",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "raredjango",
+            "database": "db.sqlite3"
+        }
+    ]
+}
