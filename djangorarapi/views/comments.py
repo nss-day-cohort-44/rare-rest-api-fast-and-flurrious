@@ -31,7 +31,7 @@ class Comments(ViewSet):
         # and set its properties from what was sent in the
         # body of the request from the client.
         comment.content = request.data["content"]
-        comment.created_on = request.data["created_on"]
+        
 
 
         # Use the Django ORM to get the record from the database
