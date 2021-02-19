@@ -152,3 +152,5 @@ dmypy.json
 # End of https://www.toptal.com/developers/gitignore/api/djang
 Pipfile
 Pipfile.lock
+.vscode/*.*
+*000*.py
