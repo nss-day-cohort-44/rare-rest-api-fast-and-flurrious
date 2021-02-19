@@ -3,10 +3,18 @@ from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
 from djangorarapi.views import register_user, login_user
+<<<<<<< HEAD
 from djangorarapi.views import Comments
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'comments', Comments, 'comment')
+=======
+from djangorarapi.views import Posts, Categories
+
+router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'categories', Categories, 'category')
+router.register(r'posts', Posts, 'post')
+>>>>>>> main
 
 urlpatterns = [
     path('', include(router.urls)),
