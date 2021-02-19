@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/home/heath/.local/share/virtualenvs/rare-rest-api-fast-and-flurrious-YzZj8sWT/bin/python",
+    "python.pythonPath": "/home/darrensimmons/.local/share/virtualenvs/server-KtzC_mbE/bin/python",
     "sqltools.connections": [
         {
             "previewLimit": 50,
@@ -7,5 +7,6 @@
             "name": "raredjango",
             "database": "db.sqlite3"
         }
-    ]
+    ],
+    "python.linting.pylintEnabled": true
 }
