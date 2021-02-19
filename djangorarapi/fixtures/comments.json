@@ -1,0 +1,42 @@
+[
+    {
+        "model": "djangorarapi.comment",
+        "pk": 1,
+        "fields": {
+            "post": 3,
+            "author": 1,
+            "content": "I have an opinion",
+            "created_on": "2020-16-28T11:51:39.989Z"
+        }
+    },
+    {
+        "model": "djangorarapi.comment",
+        "pk": 1,
+        "fields": {
+            "post": 3,
+            "author": 2,
+            "content": "I'm a Doctor",
+            "created_on": "2020-16-28T12:51:39.989Z"
+        }
+    },
+    {
+        "model": "djangorarapi.comment",
+        "pk": 1,
+        "fields": {
+            "post": 3,
+            "author": 1,
+            "content": "I'm still entitled to my opinion",
+            "created_on": "2020-16-28T13:51:39.989Z"
+        }
+    },
+    {
+        "model": "djangorarapi.comment",
+        "pk": 1,
+        "fields": {
+            "post": 3,
+            "author": 2,
+            "content": "I'm still a Doctor",
+            "created_on": "2020-16-28T14:51:39.989Z"
+        }
+    }
+]
