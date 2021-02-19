@@ -1,0 +1,18 @@
+[
+    {
+        "model": "djangorarapi.reaction",
+        "pk": 1,
+        "fields": {
+            "label": "Thumbs Up",
+            "image": "https://www.pinclipart.com/picdir/middle/80-800346_blue-thumbs-up-icon-clipart.png"
+        }
+    },
+    {
+        "model": "djangorarapi.reaction",
+        "pk": 2,
+        "fields": {
+            "label": "Thumbs Down",
+            "image": "https://emoji.gg/assets/emoji/blurple_middle_finger.png"
+        }
+    }
+]

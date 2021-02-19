@@ -11,7 +11,7 @@
     },
     {
         "model": "djangorarapi.comment",
-        "pk": 1,
+        "pk": 2,
         "fields": {
             "post": 3,
             "author": 2,
@@ -21,7 +21,7 @@
     },
     {
         "model": "djangorarapi.comment",
-        "pk": 1,
+        "pk": 3,
         "fields": {
             "post": 3,
             "author": 1,
@@ -31,12 +31,22 @@
     },
     {
         "model": "djangorarapi.comment",
-        "pk": 1,
+        "pk": 4,
         "fields": {
             "post": 3,
             "author": 2,
             "content": "I'm still a Doctor",
             "created_on": "2020-16-28T14:51:39.989Z"
+        }
+    },
+    {
+        "model": "djangorarapi.comment",
+        "pk": 5,
+        "fields": {
+            "post": 2,
+            "author": 1,
+            "content": "Git 'em!",
+            "created_on": "2020-16-28T15:51:39.989Z"
         }
     }
 ]

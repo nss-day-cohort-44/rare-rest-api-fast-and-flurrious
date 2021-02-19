@@ -8,21 +8,21 @@
     },
     {
         "model": "djangorarapi.category",
-        "pk": 1,
+        "pk": 2,
         "fields": {
             "label": "Home Defense"
         }
     },
     {
         "model": "djangorarapi.category",
-        "pk": 1,
+        "pk": 3,
         "fields": {
             "label": "Healthcare"
         }
     },
     {
         "model": "djangorarapi.category",
-        "pk": 1,
+        "pk": 4,
         "fields": {
             "label": "Business"
         }
