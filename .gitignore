@@ -153,3 +153,4 @@ dmypy.json
 Pipfile
 Pipfile.lock
 .vscode/*.*
+*000*.py
