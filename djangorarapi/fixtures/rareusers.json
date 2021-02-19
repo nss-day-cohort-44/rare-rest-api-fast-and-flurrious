@@ -6,8 +6,7 @@
             "user": 1,
             "bio": "Me",
             "profile_image": "https://i.kym-cdn.com/photos/images/newsfeed/000/052/255/1266472018171.jpg",
-            "created_on": "2020-08-28",
-            "active": true
+            "created_on": "2020-08-28"
         }
     },
     {
@@ -17,8 +16,7 @@
             "user": 2,
             "bio": "You",
             "profile_image": "https://static.wikia.nocookie.net/the-mysterious-mr-enter/images/c/cf/Unsure.jpg/revision/latest/scale-to-width-down/340?cb=20150208173457",
-            "created_on": "2020-09-28",
-            "active": false
+            "created_on": "2020-09-28"
         }
     }
 ]
