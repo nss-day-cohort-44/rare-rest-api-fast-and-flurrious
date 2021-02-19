@@ -11,12 +11,53 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from django.views.decorators.csrf import csrf_exempt
-from djangorarapi.models import Comment
+from djangorarapi.models import Comment, Rareuser, Post
 
 class Comments(ViewSet):
 
+    def create(self, request):
+        """Handle POST operations
 
- def list(self, request):
+        Returns:
+            Response -- JSON serialized comment instance
+        """
+
+        comment = Comment()
+        # Uses the token passed in the `Authorization` header
+        author = Rareuser.objects.get(user=request.auth.user)
+        comment.author = author
+
+        # Create a new Python instance of the Game class
+        # and set its properties from what was sent in the
+        # body of the request from the client.
+        comment.content = request.data["content"]
+        comment.created_on = request.data["created_on"]
+
+
+        # Use the Django ORM to get the record from the database
+        # whose `id` is what the client passed as the
+        # `post` in the body of the request.
+        post = Post.objects.get(pk=request.data["post"])
+        comment.post = post
+        
+
+        # Try to save the new comment to the database, then
+        # serialize the comment instance as JSON, and send the
+        # JSON as a response to the client request
+        try:
+            comment.save()
+            serializer = CommentSerializer(comment, context={'request': request})
+            return Response(serializer.data)
+
+        # If anything went wrong, catch the exception and
+        # send a response with a 400 status code to tell the
+        # client that something was wrong with its request data
+        except ValidationError as ex:
+            return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
+   
+
+
+    def list(self, request):
         """Handle GET requests to comment resource
 
         Returns:
