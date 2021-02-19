@@ -1,3 +1,4 @@
+"""Constructor File for models"""
 from .categories import Category
 from .comments import Comment
 from .demotionqueues import Demotionqueue
