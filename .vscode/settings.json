@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/home/darrensimmons/.local/share/virtualenvs/server-KtzC_mbE/bin/python",
+    "python.pythonPath": "/home/heath/.pyenv/versions/3.8.1/bin/python",
     "sqltools.connections": [
         {
             "previewLimit": 50,
