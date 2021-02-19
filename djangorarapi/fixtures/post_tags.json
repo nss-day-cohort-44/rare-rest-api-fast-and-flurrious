@@ -1,0 +1,34 @@
+[
+    {
+        "model": "djangorarapi.post_tag",
+        "pk": 1,
+        "fields": {
+            "tag": 1,
+            "post": 1
+        }
+    },
+    {
+        "model": "djangorarapi.post_tag",
+        "pk": 2,
+        "fields": {
+            "tag": 2,
+            "post": 2
+        }
+    },
+    {
+        "model": "djangorarapi.post_tag",
+        "pk": 3,
+        "fields": {
+            "tag": 3,
+            "post": 3
+        }
+    },
+    {
+        "model": "djangorarapi.post_tag",
+        "pk": 4,
+        "fields": {
+            "tag": 4,
+            "post": 4
+        }
+    }
+]

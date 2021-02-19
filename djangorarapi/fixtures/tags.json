@@ -1,0 +1,30 @@
+[
+    {
+        "model": "djangorarapi.tag",
+        "pk": 1,
+        "fields": {
+            "label": "civilservice"
+        }
+    },
+    {
+        "model": "djangorarapi.tag",
+        "pk": 2,
+        "fields": {
+            "label": "getoffmylawn"
+        }
+    },
+    {
+        "model": "djangorarapi.tag",
+        "pk": 3,
+        "fields": {
+            "label": "ewwoldpeople"
+        }
+    },
+    {
+        "model": "djangorarapi.tag",
+        "pk": 4,
+        "fields": {
+            "label": "lastmanstanding"
+        }
+    }
+]

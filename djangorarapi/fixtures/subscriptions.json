@@ -1,0 +1,22 @@
+[
+    {
+        "model": "djangorarapi.subscription",
+        "pk": 1,
+        "fields": {
+            "follower": 1,
+            "author": 2,
+            "created_on": "2020-10-28",
+            "ended_on": null
+        }
+    },
+    {
+        "model": "djangorarapi.subscription",
+        "pk": 2,
+        "fields": {
+            "follower": 2,
+            "author": 1,
+            "created_on": "2020-12-28",
+            "ended_on": "2020-12-29"
+        }
+    }
+]
