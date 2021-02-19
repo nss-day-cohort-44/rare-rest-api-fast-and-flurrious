@@ -1,0 +1,11 @@
+[
+    {
+        "model": "djangorarapi.demotionqueue",
+        "pk": 1,
+        "fields": {
+            "action": "approved post",
+            "admin": 1,
+            "approver_one": 1
+        }
+    }
+]
