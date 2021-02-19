@@ -50,5 +50,5 @@ class Posts(ViewSet):
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ('id', 'title', 'publication_date', 'profile_image_url', 'content', 'approved', 'user')
+        fields = ('id', 'title', 'publication_date', 'profile_image_url', 'content', 'approved', 'user', 'category')
         depth = 1
