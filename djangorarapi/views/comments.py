@@ -13,6 +13,7 @@ from rest_framework.authtoken.models import Token
 from django.views.decorators.csrf import csrf_exempt
 from djangorarapi.models import Comment, Rareuser, Post
 
+
 class Comments(ViewSet):
 
     def create(self, request):
@@ -31,22 +32,20 @@ class Comments(ViewSet):
         # and set its properties from what was sent in the
         # body of the request from the client.
         comment.content = request.data["content"]
-        
-
 
         # Use the Django ORM to get the record from the database
         # whose `id` is what the client passed as the
         # `post` in the body of the request.
         post = Post.objects.get(pk=request.data["post"])
         comment.post = post
-        
 
         # Try to save the new comment to the database, then
         # serialize the comment instance as JSON, and send the
         # JSON as a response to the client request
         try:
             comment.save()
-            serializer = CommentSerializer(comment, context={'request': request})
+            serializer = CommentSerializer(
+                comment, context={'request': request})
             return Response(serializer.data)
 
         # If anything went wrong, catch the exception and
@@ -54,8 +53,6 @@ class Comments(ViewSet):
         # client that something was wrong with its request data
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
-   
-
 
     def list(self, request):
         """Handle GET requests to comment resource
@@ -74,11 +71,27 @@ class Comments(ViewSet):
         if post is not None:
             comment = comment.filter(post__id=post)
 
-        
-
         serializer = CommentSerializer(
             comment, many=True, context={'request': request})
         return Response(serializer.data)
+
+    def destroy(self, request, pk=None):
+        """Handle DELETE requests for a single comment
+
+        Returns:
+            Response -- 200, 404, or 500 status code
+        """
+        try:
+            comment = Comment.objects.get(pk=pk)
+            comment.delete()
+
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+        except Comment.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -91,4 +104,3 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ('id', 'post', 'author', 'content',
                   'created_on')
-       
