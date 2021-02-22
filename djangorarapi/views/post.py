@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from djangorarapi.models import Post, Rareuser, Category
+from django.contrib.auth.models import User
 
 class Posts(ViewSet):
     #Django Rare Posts View Set
@@ -17,9 +18,11 @@ class Posts(ViewSet):
 
         posts = Post.objects.all()
 
-        rare_user = self.request.query_params.get('user', None)
-        if rare_user is not None:
-            posts = posts.filter(user__id=rare_user)
+        rare_token = self.request.query_params.get('user_id', None)
+        rare_user = Rareuser.objects.get(user = User.objects.get(auth_token=rare_token))
+        print(rare_user)
+        if rare_token is not None:
+            posts = Post.objects.filter(user=rare_user)
 
         serializer = PostSerializer(
             posts, many=True, context={'request': request})
