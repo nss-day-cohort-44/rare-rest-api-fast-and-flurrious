@@ -10,6 +10,22 @@ from djangorarapi.models import Category
 
 class Categories(ViewSet):
     """Rare Categories"""
+    def create(self, request):
+        # handle POST HTTP method, return HTTP status of 201 for success
+        category = Category()
+        category.label = request.data["label"]
+
+        # Try to save new category to the database, then
+        # serialize the category instance as JSON, and send the
+        # JSON as a response to the client request
+        try:
+            category.save()
+            serializer = CategorySerializer(category, context={'request': request})
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        # catch any exceptions from the above save or serialzier calls
+        except ValidationError as ex:
+            return Response ({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
 
 
     def list(self, request):
