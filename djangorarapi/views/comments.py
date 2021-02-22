@@ -67,7 +67,7 @@ class Comments(ViewSet):
         #    http://localhost:8000/comment?post=1
         #
         # That URL will retrieve all tabletop comment
-        post = self.request.query_params.get('post', None)
+        post = self.request.query_params.get('post_id', None)
         if post is not None:
             comment = comment.filter(post__id=post)
 
@@ -82,6 +82,7 @@ class Comments(ViewSet):
             Response -- 200, 404, or 500 status code
         """
         try:
+
             comment = Comment.objects.get(pk=pk)
             comment.delete()
 
