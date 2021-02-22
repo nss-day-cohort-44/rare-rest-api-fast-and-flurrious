@@ -5,9 +5,11 @@ from rest_framework import routers
 from djangorarapi.views import register_user, login_user
 from djangorarapi.views import Tags
 
-
+from djangorarapi.views import Posts, Categories
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r"tags", Tags, "tag")
+router.register(r'categories', Categories, 'category')
+router.register(r'posts', Posts, 'post')
 
 urlpatterns = [
     path('', include(router.urls)),
