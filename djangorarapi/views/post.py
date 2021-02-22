@@ -84,6 +84,24 @@ class Posts(ViewSet):
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
+    
+    def update(self, request, pk=None):
+        user = Rareuser.objects.get(user=request.auth.user)
+
+        post = Post.objects.get(pk=pk)
+        post.title = request.data['title']
+        post.publication_date = request.data['publicationDate']
+        post.profile_image_url = request.data['profileImageUrl']
+        post.content = request.data['content']
+        post.approved = request.data['approved']
+        post.user = user
+
+        category = Category.objects.get(pk=request.data['categoryId'])
+        post.category = category
+        
+        post.save()
+
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
 
 
 class PostSerializer(serializers.ModelSerializer):
