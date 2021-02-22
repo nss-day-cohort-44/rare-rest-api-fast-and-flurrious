@@ -16,6 +16,30 @@ from djangorarapi.models import Comment, Rareuser, Post
 
 class Comments(ViewSet):
 
+    def update(self, request, pk=None):
+        """Handle PUT requests for a game
+
+        Returns:
+            Response -- Empty body with 204 status code
+        """
+        comment = Comment.objects.get(pk=pk)
+
+        author = Rareuser.objects.get(user=request.auth.user)
+        comment.author = author
+
+        # Do mostly the same thing as POST, but instead of
+        # creating a new instance of Game, get the game record
+        # from the database whose primary key is `pk`
+        comment.content = request.data["content"]
+
+        post = Post.objects.get(pk=request.data["post"])
+        comment.post = post
+        comment.save()
+
+        # 204 status code means everything worked but the
+        # server is not sending back any data in the response
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
+
     def create(self, request):
         """Handle POST operations
 
