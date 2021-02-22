@@ -17,6 +17,10 @@ class Posts(ViewSet):
 
         posts = Post.objects.all()
 
+        rare_user = self.request.query_params.get('user', None)
+        if rare_user is not None:
+            posts = posts.filter(user__id=rare_user)
+
         serializer = PostSerializer(
             posts, many=True, context={'request': request})
         return Response(serializer.data)
