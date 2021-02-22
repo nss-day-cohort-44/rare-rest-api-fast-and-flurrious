@@ -41,6 +41,27 @@ class Categories(ViewSet):
         serializer = CategorySerializer(
             categories, many=True, context={'request': request})
         return Response(serializer.data)
+    
+    # Handle HTTP DELETE method and return HTTP status code of 204, 404, or 500
+    def destroy(self, request, pk=None):
+        try:
+            category = Category.objects.get(pk=pk)
+            category.delete()
+
+            #return HTTP 204 to client if no errors
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+       # return HTTP 404 to client if label not found
+        except Category.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+        
+        # return HTTP 500 to client if exception is thrown
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+
+
+
 
 
 class CategorySerializer(serializers.ModelSerializer):
