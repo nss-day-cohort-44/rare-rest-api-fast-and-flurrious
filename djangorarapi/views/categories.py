@@ -41,7 +41,16 @@ class Categories(ViewSet):
         serializer = CategorySerializer(
             categories, many=True, context={'request': request})
         return Response(serializer.data)
-    
+
+    def update(self, reqeust, pk=None):
+        # Handle PUT request for a category, return HTTP status code of 204 upon success
+        category = Category.objects.get(pk=pk)
+        category.label = reqeust.data["label"]
+        category.save()
+
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+
     # Handle HTTP DELETE method and return HTTP status code of 204, 404, or 500
     def destroy(self, request, pk=None):
         try:
