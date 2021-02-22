@@ -17,6 +17,7 @@ class Posts(ViewSet):
         #Handles get all posts from the database
 
         posts = Post.objects.all()
+        # localhost:8000/posts?user_id=fas'ljfna
 
         rare_token = self.request.query_params.get('user_id', None)
         rare_user = Rareuser.objects.get(user = User.objects.get(auth_token=rare_token))
@@ -34,7 +35,6 @@ class Posts(ViewSet):
 
         post = Post()
         post.title = request.data["title"]
-        post.publication_date = request.data["publicationDate"]
         post.profile_image_url = request.data["profileImageUrl"]
         post.content = request.data["content"]
         post.approved = request.data["approved"]
@@ -93,7 +93,6 @@ class Posts(ViewSet):
 
         post = Post.objects.get(pk=pk)
         post.title = request.data['title']
-        post.publication_date = request.data['publicationDate']
         post.profile_image_url = request.data['profileImageUrl']
         post.content = request.data['content']
         post.approved = request.data['approved']
