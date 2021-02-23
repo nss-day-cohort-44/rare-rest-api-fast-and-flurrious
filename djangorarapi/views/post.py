@@ -18,10 +18,13 @@ class Posts(ViewSet):
         posts = Post.objects.all()
         # localhost:8000/posts?user_id=fas'ljfna
 
+        # Looks for the user_id query parameter
         rare_token = self.request.query_params.get('user_id', None)
-        rare_user = Rareuser.objects.get(user = User.objects.get(auth_token=rare_token))
-        print(rare_user)
+
+        # IF the user token in the query exists the below will run
         if rare_token is not None:
+            # Finds the user by the authentication token, THEN finds the rare_user from user
+            rare_user = Rareuser.objects.get(user = User.objects.get(auth_token=rare_token))
             posts = Post.objects.filter(user=rare_user)
 
         serializer = PostSerializer(
@@ -120,6 +123,18 @@ class Posts(ViewSet):
         Returns:
             Response -- JSON serialized post instance
         """
+
+                for post in posts:
+        post.joined = None
+
+        try:
+            post_tags = Post_Tag.objects.get(post=post)
+            filtered_tags = Tag.objects.filter(post_tags__tag=id)
+            post.joined = True
+        except Post_Tag.DoesNotExist:
+            post.joined = False
+
+
         try:
             # `pk` is a parameter to this function, and
             # Django parses it from the URL route parameter
@@ -158,5 +173,15 @@ class TagSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ('id', 'title', 'publication_date', 'profile_image_url', 'content', 'approved', 'user', 'category', 'tagged')
-        depth = 1
+        fields = ('id', 'title', 'publication_date', 'profile_image_url', 'content', 'approved', 'user', 'category', 'tags')
+        depth = 2
+
+# class Post_TagSerializer(serializers.ModelSerializer):
+#     """JSON serializer for event organizer"""
+#     tag = TagSerializer(many=False)
+#     post = PostSerializer(many=False)
+
+#     class Meta:
+#         model = Tag
+#         fields = ['tag']
+
