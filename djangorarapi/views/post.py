@@ -124,15 +124,15 @@ class Posts(ViewSet):
             Response -- JSON serialized post instance
         """
 
-                for post in posts:
-        post.joined = None
+        # for post in posts:
+        #     post.joined = None
 
-        try:
-            post_tags = Post_Tag.objects.get(post=post)
-            filtered_tags = Tag.objects.filter(post_tags__tag=id)
-            post.joined = True
-        except Post_Tag.DoesNotExist:
-            post.joined = False
+        #     try:
+        #         post_tags = Post_Tag.objects.get(post=post)
+        #         filtered_tags = Tag.objects.filter(post_tags__tag=id)
+        #         post.joined = True
+        #     except Post_Tag.DoesNotExist:
+        #         post.joined = False
 
 
         try:
