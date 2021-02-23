@@ -175,6 +175,8 @@ class TagSerializer(serializers.ModelSerializer):
         fields = ( 'id', 'label' )
 
 class PostSerializer(serializers.ModelSerializer):
+
+    tags = TagSerializer(many=True)
     class Meta:
         model = Post
         fields = ('id', 'title', 'publication_date', 'profile_image_url', 'content', 'approved', 'user', 'category', 'tags')

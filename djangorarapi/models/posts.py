@@ -12,10 +12,11 @@ class Post(models.Model):
     profile_image_url = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None)
     content = models.CharField(max_length=1500)
     approved = models.BooleanField()
+    
     @property
     def tags(self):
         return self.__tags
 
     @tags.setter
-    def related_tags(self, value):
+    def tags(self, value):
         self.__tags = value
