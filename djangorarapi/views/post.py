@@ -1,14 +1,13 @@
 """View module for handling requests about games"""
-from djangorarapi.models.categories import Category
 from django.core.exceptions import ValidationError
 from rest_framework import status
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
-from rest_framework import status
-from djangorarapi.models import Post, Rareuser, Category
 from django.contrib.auth.models import User
+from djangorarapi.models import Post, Rareuser, Category, Tag, Post_Tag
+from rest_framework.decorators import action
 
 class Posts(ViewSet):
     #Django Rare Posts View Set
@@ -28,6 +27,51 @@ class Posts(ViewSet):
         serializer = PostSerializer(
             posts, many=True, context={'request': request})
         return Response(serializer.data)
+
+    @action(methods=[ 'post', 'delete'], detail=True)
+    def tag(self, request, pk=None):
+
+        if request.method=="POST":
+            
+            post=Post.objects.get(pk=pk)
+            tag=Tag.objects.get(pk=request.data["tagId"])
+            try:
+                post_tag = Post_Tag.objects.get(post=post, tag=tag)
+                return Response(
+                    {'message': 'this tag is on the post.'},
+                    status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+            except Post_Tag.DoesNotExist:    
+                post_tag=Post_Tag()
+                post_tag.post=post
+                post_tag.tag=tag
+                post_tag.save()
+                return Response({}, status=status.HTTP_201_CREATED)
+
+        elif request.method=="DELETE":
+            try:
+                post=Post.objects.get(pk=pk)
+
+            except Post.DoesNotExist:
+                return Response(
+                    {'message': 'Post does not exist.'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            # user = RareUser.objects.get(user=request.auth.user)
+            try:
+                post=Post.objects.get(pk=pk)
+                
+                tag=Tag.objects.get(pk=request.data["tag_id"])
+                
+                post_tag = Post_Tag.objects.get(post=post, tag=tag)
+                
+                post_tag.delete()
+                return Response(None, status=status.HTTP_204_NO_CONTENT)
+            except Post_Tag.DoesNotExist:
+                return Response(
+                    {'message': 'tag is not on the post'},
+                    status=status.HTTP_404_NOT_FOUND
+                )
+        return Response({}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def create(self, request):
         
@@ -71,15 +115,15 @@ class Posts(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def retrieve(self, request, pk=None):
-        """Handle GET requests for single game
+        """Handle GET requests for single post
 
         Returns:
-            Response -- JSON serialized game instance
+            Response -- JSON serialized post instance
         """
         try:
             # `pk` is a parameter to this function, and
             # Django parses it from the URL route parameter
-            #   http://localhost:8000/games/2
+            #   http://localhost:8000/posts/2
             #
             # The `2` at the end of the route becomes `pk`
             post = Post.objects.get(pk=pk)
@@ -105,9 +149,14 @@ class Posts(ViewSet):
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
+class TagSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Tag
+        fields = ( 'id', 'label' )
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ('id', 'title', 'publication_date', 'profile_image_url', 'content', 'approved', 'user', 'category')
+        fields = ('id', 'title', 'publication_date', 'profile_image_url', 'content', 'approved', 'user', 'category', 'tagged')
         depth = 1
