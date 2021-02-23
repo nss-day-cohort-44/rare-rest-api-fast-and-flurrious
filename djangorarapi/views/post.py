@@ -25,6 +25,7 @@ class Posts(ViewSet):
         if rare_token is not None:
             # Finds the user by the authentication token, THEN finds the rare_user from user
             rare_user = Rareuser.objects.get(user = User.objects.get(auth_token=rare_token))
+            # Filters posts by the found user
             posts = Post.objects.filter(user=rare_user)
 
         serializer = PostSerializer(
@@ -59,11 +60,11 @@ class Posts(ViewSet):
                     {'message': 'Post does not exist.'},
                     status=status.HTTP_400_BAD_REQUEST
                 )
-            # user = RareUser.objects.get(user=request.auth.user)
+
             try:
                 post=Post.objects.get(pk=pk)
                 
-                tag=Tag.objects.get(pk=request.data["tag_id"])
+                tag=Tag.objects.get(pk=request.data["tagId"])
                 
                 post_tag = Post_Tag.objects.get(post=post, tag=tag)
                 
@@ -118,9 +119,6 @@ class Posts(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-
-
-
     def retrieve(self, request, pk=None):
         """Handle GET requests for single post
 
@@ -129,27 +127,18 @@ class Posts(ViewSet):
         """
 
         try: 
+            # Finds the post by the id provided by URL
             post = Post.objects.get(pk=pk)
+            # Filters tags matching the post primary key via the Tag_Post
             matching_tags = Tag.objects.filter(tags__post=post)
+            # Joins the tags to the post object
             post.tags=matching_tags
 
-            serializer = PostSerializer(post, context={'request': request}) 
+            serializer = Post_w_TagSerializer(post, context={'request': request}) 
             return Response(serializer.data)
 
         except Exception as ex:
             return HttpResponseServerError(ex)
-
-        # try:
-        #     # `pk` is a parameter to this function, and
-        #     # Django parses it from the URL route parameter
-        #     #   http://localhost:8000/posts/2
-        #     #
-        #     # The `2` at the end of the route becomes `pk`
-        #     post = Post.objects.get(pk=pk)
-        #     serializer = PostSerializer(post, context={'request': request})
-        #     return Response(serializer.data)
-        # except Exception as ex:
-        #     return HttpResponseServerError(ex)
     
     def update(self, request, pk=None):
         user = Rareuser.objects.get(user=request.auth.user)
@@ -176,18 +165,17 @@ class TagSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = Post
+        fields = ('id', 'title', 'publication_date', 'profile_image_url', 'content', 'approved', 'user', 'category')
+        depth = 1
+
+class Post_w_TagSerializer(serializers.ModelSerializer):
+    """ Serializer to Join Post and Tags """
+    # Defines the 'tags' field in the Serializer
     tags = TagSerializer(many=True)
+
     class Meta:
         model = Post
         fields = ('id', 'title', 'publication_date', 'profile_image_url', 'content', 'approved', 'user', 'category', 'tags')
         depth = 2
-
-# class Post_TagSerializer(serializers.ModelSerializer):
-#     """JSON serializer for event organizer"""
-#     tag = TagSerializer(many=False)
-#     post = PostSerializer(many=False)
-
-#     class Meta:
-#         model = Tag
-#         fields = ['tag']
-

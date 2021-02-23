@@ -12,7 +12,8 @@ class Post(models.Model):
     profile_image_url = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None)
     content = models.CharField(max_length=1500)
     approved = models.BooleanField()
-    
+
+    # Defines the virtual property named by the 'related_name' in the Post_Tag model and PostSerializer
     @property
     def tags(self):
         return self.__tags
