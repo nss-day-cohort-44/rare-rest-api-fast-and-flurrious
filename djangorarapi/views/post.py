@@ -117,6 +117,10 @@ class Posts(ViewSet):
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
+
+
+
     def retrieve(self, request, pk=None):
         """Handle GET requests for single post
 
@@ -124,28 +128,28 @@ class Posts(ViewSet):
             Response -- JSON serialized post instance
         """
 
-        # for post in posts:
-        #     post.joined = None
-
-        #     try:
-        #         post_tags = Post_Tag.objects.get(post=post)
-        #         filtered_tags = Tag.objects.filter(post_tags__tag=id)
-        #         post.joined = True
-        #     except Post_Tag.DoesNotExist:
-        #         post.joined = False
-
-
-        try:
-            # `pk` is a parameter to this function, and
-            # Django parses it from the URL route parameter
-            #   http://localhost:8000/posts/2
-            #
-            # The `2` at the end of the route becomes `pk`
+        try: 
             post = Post.objects.get(pk=pk)
-            serializer = PostSerializer(post, context={'request': request})
+            matching_tags = Tag.objects.filter(tags__post=post)
+            post.tags=matching_tags
+
+            serializer = PostSerializer(post, context={'request': request}) 
             return Response(serializer.data)
+
         except Exception as ex:
             return HttpResponseServerError(ex)
+
+        # try:
+        #     # `pk` is a parameter to this function, and
+        #     # Django parses it from the URL route parameter
+        #     #   http://localhost:8000/posts/2
+        #     #
+        #     # The `2` at the end of the route becomes `pk`
+        #     post = Post.objects.get(pk=pk)
+        #     serializer = PostSerializer(post, context={'request': request})
+        #     return Response(serializer.data)
+        # except Exception as ex:
+        #     return HttpResponseServerError(ex)
     
     def update(self, request, pk=None):
         user = Rareuser.objects.get(user=request.auth.user)
