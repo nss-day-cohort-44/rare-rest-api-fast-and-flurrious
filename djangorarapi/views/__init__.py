@@ -4,3 +4,4 @@ from .comments import Comments
 from .tags import Tags
 from .categories import Categories
 from .post import Posts
+from .profiles import Profiles
